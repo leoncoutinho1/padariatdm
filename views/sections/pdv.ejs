@@ -1,0 +1,74 @@
+<section class="pdv" id="pdv">
+  <div class="pdv__list">
+    <div class="pdv__list__header">
+      <p class="pdv__list__header__vendedor">
+        <span>Vendedor:</span>
+        <span id="pdv__list__header__vendedor">Leonardo</span>
+      </p>
+      <span class="pdv__list__header__data" id="pdv__data">
+      </span>
+      <span class="pdv__list__header__hora" id="pdv__hora">
+      </span>
+    </div>
+    <div class="pdv__list__form">
+      <div class="pdv__list__form__group">
+        <label for="pdv__list__form__qty" class="pdv__list__form__label">Quantidade</label>
+        <input type="number" step="0.001" min="0" class="pdv__list__form__qty" id="pdv__list__form__qty"
+          onkeydown="javascript:EnterTab('pdv__list__form__prod', event)">
+      </div>
+      <div class="pdv__list__form__group">
+        <label for="pdv__list__form__prod" class="pdv__list__form__label">Produto</label>
+        <input type="list" class="pdv__list__form__prod" id="pdv__list__form__prod" list="pdv__list__form__dl_prods"
+          onkeydown="javascript:addProd(event)">
+        <datalist id="pdv__list__form__dl_prods">
+
+        </datalist>
+      </div>
+    </div>
+    <table class="pdv__list__table">
+      <thead>
+        <tr>
+          <th class="">Quantidade</th>
+          <th class="">Produto</th>
+          <th class="">Preço Unitário</th>
+          <th class="">Preço Total</th>
+        </tr>
+      </thead>
+      <tbody id="pdv__list__table__body">
+
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="pdv__nota">
+    <table class="pdv__nota__table__header">
+      <tr>
+        <th class="">Qtde</th>
+        <th class="">Produto</th>
+        <th class=""></th>
+        <th class=""></th>
+      </tr>
+      <tr>
+        <th class=""></th>
+        <th class="">Preço Unitário</th>
+        <th class=""></th>
+        <th class="">Total</th>
+      </tr>
+    </table>
+    <table class="pdv__nota__table__prods">
+      <tr>
+        <td>10</td>
+        <td>Pão de sal</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>0.25</td>
+        <td></td>
+        <td>2,50</td>
+      </tr>
+    </table>
+  </div>
+</section>

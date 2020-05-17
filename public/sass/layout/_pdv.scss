@@ -1,0 +1,119 @@
+.pdv {  
+  width: 90%;
+  display: none;
+  flex-direction: row;
+  font-size: 1.5rem;
+  
+  &__list {
+    border-right: 1px solid $color-gray-light-2;
+    width: 85%;
+    padding: 1rem;
+
+    &__header {
+      margin-top: 2rem;
+      padding: 0 2rem;
+      font-weight: 500;
+      color: $color-gray-dark;
+      display: flex;
+      justify-content: space-between;
+    
+      &__vendedor {
+        display: inline;
+      }
+
+      &__data {
+        display: inline;
+      }
+
+      &__hora {
+        display: inline;
+      }
+    }
+
+    &__form {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      width: 90%;
+      margin: 1rem auto;
+      
+      &__group {
+        display: flex;
+        flex-direction: column;
+        
+        & input {
+          font-size: 1.8rem;
+          text-transform: uppercase;
+          border: 0;
+          border-bottom: 1px solid rgba($color-black, 0.1);
+          outline: none;
+          padding-left: 3px;
+          padding-bottom: 1px;
+
+          &:focus {
+            border-bottom: 1px solid rgba($color-black, 0.25);
+          }
+        }
+
+        &:first-child {
+          width: 8rem;
+        }
+
+        &:last-child {
+          width: 45rem;
+        }
+      }
+    }
+
+    &__table {
+      font-size: 1.8rem;
+      width: 90%;
+      margin: 0 auto;
+      margin-top: 2rem;
+      padding: 0;
+      
+
+      tr:nth-child(odd) {
+        background: rgba($color-gray-light-2, 0.7);
+      }
+      tr th:first-child,
+      tr td:first-child {
+        width: 10%;
+        text-align: center;
+      }
+
+      tr th:nth-child(2),
+      tr td:nth-child(2) {
+        width: 60%;
+      }
+
+      tr th:nth-child(3),
+      tr td:nth-child(3) {
+        width: 15%;
+        text-align: center;
+      }
+
+      tr th:last-child,
+      tr td:last-child {
+        width: 15%;
+        text-align: center;
+      }
+    }
+
+    
+  }
+
+  
+
+  &__nota {
+    
+    font-size: 10pt;
+
+    &__table {
+      &__header {
+        background-color: rgba($color-gray-light-1, 0.7);
+        margin-bottom: 2rem;
+      }
+    }
+  }
+}

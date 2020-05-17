@@ -1,0 +1,9 @@
+.grid {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+:target {
+    display: flex;
+}

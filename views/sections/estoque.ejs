@@ -1,0 +1,23 @@
+<section class="estoque" id="estoque">
+  <div class="estoque__list">
+    <table class="estoque__list__table">
+      <tr>
+        <th class="">Código</th>
+        <th class="">Descrição</th>
+        <th class="">Preço Unitário</th>
+        <th class=""></th>
+      </tr>
+      <% if (prods.length > 0) { %>
+      <% prods.forEach(p => { %>
+      <tr>
+        <td><%= p.code %></td>
+        <td><%= p.description %></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <% }) %>
+      <% } %>
+      <tr>
+
+    </table>
+  </div>

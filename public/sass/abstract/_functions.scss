@@ -1,0 +1,6 @@
+@function widthcolumn($numberCols, $colunasLinha) {
+    //col
+
+    $result: calc(((#{$numberCols} * (100% - (#{$colunasLinha} - 1) * #{$gutter-horizontal} ) / #{$colunasLinha})) + (#{$gutter-horizontal} * (#{$numberCols} - 1)));
+    @return $result;
+}
