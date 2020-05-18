@@ -73,6 +73,7 @@ function atualizaRelogio() {
 
   setTimeout("atualizaRelogio()", 1000);
 }
+
 function updateCart(item) {
   let cartItemIndex = cart.findIndex(i => {
     return i.code === item.code
@@ -96,8 +97,8 @@ function updateListProd(cart) {
     prodlist.innerHTML += `<tr id="${item.id}">
                             <td>${item.qty}</td>
                             <td>${item.description}</td>
-                            <td>${item.unit_value}</td>
-                            <td>${item.total_value}</td>
+                            <td>R$ ${item.unit_value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</td>
+                            <td>R$ ${item.total_value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</td>
                           </tr>`;
   });
 }
