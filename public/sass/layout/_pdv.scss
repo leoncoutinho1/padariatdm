@@ -64,15 +64,17 @@
         }
       }
     }
-
-    &__table {
-      font-size: 1.8rem;
+    &__tab {
       width: 90%;
+      height: 36rem;
       margin: 0 auto;
       margin-top: 2rem;
       padding: 0;
-      
+    }
 
+    &__table {
+      font-size: 1.8rem;
+      
       tr:nth-child(odd) {
         background: rgba($color-gray-light-2, 0.7);
       }
@@ -100,7 +102,50 @@
       }
     }
 
-    
+    &__sell {
+      width: 70%;
+      margin: 0 auto;
+      padding: 1rem;
+      background-color: rgba($color-gray-dark, 0.3);
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      border-radius: 4px;
+      
+      &__form-group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        color: rgba($color-black, 1);
+
+        & label {
+          font-size: 2rem;
+          font-weight: 700;
+        }
+
+        & input {
+          font-size: 5rem;
+          text-transform: uppercase;
+          border: 0;
+          border-bottom: 1px solid rgba($color-black, 0.1);
+          outline: none;
+          padding-left: 3px;
+          padding-bottom: 1px;
+  
+          &:focus {
+            border-bottom: 1px solid rgba($color-black, 0.25);
+          }
+        }
+      }
+
+      &__desconto {
+        width: 80%;
+      }
+
+      &__total {
+        width: 90%;
+      }
+    }    
   }
 
   

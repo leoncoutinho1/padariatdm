@@ -646,12 +646,14 @@ body {
           width: 8rem; }
         .pdv__list__form__group:last-child {
           width: 45rem; }
-    .pdv__list__table {
-      font-size: 1.8rem;
+    .pdv__list__tab {
       width: 90%;
+      height: 36rem;
       margin: 0 auto;
       margin-top: 2rem;
       padding: 0; }
+    .pdv__list__table {
+      font-size: 1.8rem; }
       .pdv__list__table tr:nth-child(odd) {
         background: rgba(238, 238, 238, 0.7); }
       .pdv__list__table tr th:first-child,
@@ -669,6 +671,37 @@ body {
       .pdv__list__table tr td:last-child {
         width: 15%;
         text-align: center; }
+    .pdv__list__sell {
+      width: 70%;
+      margin: 0 auto;
+      padding: 1rem;
+      background-color: rgba(119, 119, 119, 0.3);
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      border-radius: 4px; }
+      .pdv__list__sell__form-group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        color: black; }
+        .pdv__list__sell__form-group label {
+          font-size: 2rem;
+          font-weight: 700; }
+        .pdv__list__sell__form-group input {
+          font-size: 5rem;
+          text-transform: uppercase;
+          border: 0;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+          outline: none;
+          padding-left: 3px;
+          padding-bottom: 1px; }
+          .pdv__list__sell__form-group input:focus {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
+      .pdv__list__sell__desconto {
+        width: 80%; }
+      .pdv__list__sell__total {
+        width: 90%; }
   .pdv__nota {
     font-size: 10pt; }
     .pdv__nota__table__header {

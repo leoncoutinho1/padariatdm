@@ -25,19 +25,34 @@
         </datalist>
       </div>
     </div>
-    <table class="pdv__list__table">
-      <thead>
-        <tr>
-          <th class="">Quantidade</th>
-          <th class="">Produto</th>
-          <th class="">Preço Unitário</th>
-          <th class="">Preço Total</th>
-        </tr>
-      </thead>
-      <tbody id="pdv__list__table__body">
+    <div class="pdv__list__tab">
+      <table class="pdv__list__table">
+        <thead>
+          <tr>
+            <th class="">Quantidade</th>
+            <th class="">Produto</th>
+            <th class="">Preço Unitário</th>
+            <th class="">Preço Total</th>
+          </tr>
+        </thead>
+        <tbody id="pdv__list__table__body">
 
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pdv__list__sell">
+      <div class="pdv__list__sell__form-group">
+        <label for="pdv__list__sell__desconto" class="pdv__list__sell__desconto-label">Desconto:</label>
+        <input type="number" step="0.01" name="pdv__list__sell__desconto" id="pdv__list__sell__desconto"
+          class="pdv__list__sell__desconto">
+      </div>
+      <div class="pdv__list__sell__form-group">
+        <label for="pdv__list__sell__total" class="pdv__list__sell__total-label">Total:</label>
+        <input readonly type="text" name="pdv__list__sell__total" id="pdv__list__sell__total"
+          class="pdv__list__sell__total">
+      </div>
+    </div>
   </div>
 
 
