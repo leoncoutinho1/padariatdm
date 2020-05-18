@@ -3,6 +3,12 @@ let input_qty = document.getElementById('pdv__list__form__qty');
 let input_prod = document.getElementById('pdv__list__form__prod');
 let dl_prods = document.getElementById("pdv__list__form__dl_prods");
 let prodlist = document.getElementById("pdv__list__table__body");
+let input_desconto = document.getElementById("pdv__list__sell__desconto");
+let input_total = document.getElementById("pdv__list__sell__total");
+
+
+input_desconto.value = 0.00;
+input_total.vallue = 0.00;
 
 async function findProducts(prod) {
   return await fetch(`http://localhost:3000/find/${prod}`)
@@ -74,6 +80,23 @@ function atualizaRelogio() {
   setTimeout("atualizaRelogio()", 1000);
 }
 
+function aplicaDesconto() {
+  input_desconto.addEventListener("focusout", () => {
+    updateTotal();
+  });
+}
+
+function updateTotal() {
+  let valorInicial = 0;
+  let total = cart.reduce((acc, current) => {
+    return acc + current.total_value
+  }, valorInicial);
+  total = total - input_desconto.value;
+  total = total.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+  input_total.value = `R$ ${total}`;
+  input_desconto.value = input_desconto.value.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+}
+
 function updateCart(item) {
   let cartItemIndex = cart.findIndex(i => {
     return i.code === item.code
@@ -90,16 +113,15 @@ function updateCart(item) {
 }
 
 function updateListProd(cart) {
-  console.log(cart);
   prodlist.innerHTML = '';
   cart.forEach((item) => {
-    console.log(item);
     prodlist.innerHTML += `<tr id="${item.id}">
                             <td>${item.qty}</td>
                             <td>${item.description}</td>
                             <td>R$ ${item.unit_value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</td>
                             <td>R$ ${item.total_value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</td>
                           </tr>`;
+    updateTotal();
   });
 }
 
@@ -121,10 +143,11 @@ function addProd(Evento) {
           EnterTab('pdv__list__form__qty', Evento);
         })
         .catch(err => console.log(err));
-
     }
   }
 }
 
+
 window.onload = atualizaRelogio();
 window.onload = autoComplete();
+window.onload = aplicaDesconto();
