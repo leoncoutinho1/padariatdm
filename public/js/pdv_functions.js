@@ -2,10 +2,9 @@ let cart = [];
 let input_qty = document.getElementById('pdv__list__form__qty');
 let input_prod = document.getElementById('pdv__list__form__prod');
 let dl_prods = document.getElementById("pdv__list__form__dl_prods");
-let prodlist = document.getElementById("pdv__list__table__body");
+let prodlist = document.getElementById("pdv__list__table-body");
 let input_desconto = document.getElementById("pdv__list__sell__desconto");
 let input_total = document.getElementById("pdv__list__sell__total");
-
 
 input_desconto.value = 0.00;
 input_total.vallue = 0.00;
@@ -97,30 +96,39 @@ function updateTotal() {
   input_desconto.value = input_desconto.value.toLocaleString('pt-br', { minimumFractionDigits: 2 });
 }
 
-function updateCart(item) {
-  let cartItemIndex = cart.findIndex(i => {
-    return i.code === item.code
+async function updateCart(item) {
+  if (item) {
+    let cartItemIndex = cart.findIndex(i => {
+      return i.code === item.code
+    });
+
+    if (cartItemIndex >= 0) {
+      cart[cartItemIndex].qty = parseFloat(cart[cartItemIndex].qty) + parseFloat(item.qty);
+      cart[cartItemIndex].total_value = parseFloat(cart[cartItemIndex].total_value) + parseFloat(item.total_value);
+    } else {
+      cart.push(item);
+    };
+  }
+  await cart.forEach((it, index) => {
+    it.id = index;
   });
-
-  if (cartItemIndex >= 0) {
-    cart[cartItemIndex].qty = parseFloat(cart[cartItemIndex].qty) + parseFloat(item.qty);
-    cart[cartItemIndex].total_value = parseFloat(cart[cartItemIndex].total_value) + parseFloat(item.total_value);
-  } else {
-    cart.push(item);
-  };
-
+  
   updateListProd(cart);
 }
 
 function updateListProd(cart) {
   prodlist.innerHTML = '';
   cart.forEach((item) => {
-    prodlist.innerHTML += `<tr id="${item.id}">
-                            <td>${item.qty}</td>
-                            <td>${item.description}</td>
-                            <td>R$ ${item.unit_value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</td>
-                            <td>R$ ${item.total_value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</td>
-                          </tr>`;
+    prodlist.innerHTML += `
+        <div class="pdv__list__table-body-item">
+          <input type="checkbox" class="list-item" id="list-item${item.id}" value="${item.id}">
+          <label for="list-item${item.id}">
+            <div class="">${item.qty}</div>
+            <div class="">${item.description}</div>
+            <div class="">R$ ${item.unit_value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</div>
+            <div class="">R$ ${item.total_value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</div>
+          </label>
+        </div>`;
     updateTotal();
   });
 }
@@ -132,7 +140,7 @@ function addProd(Evento) {
       findProducts(input_prod.value)
         .then((prod) => {
           let item = {
-            id: cart.length + 1,
+            id: '',
             qty: input_qty.value,
             code: prod[0].code,
             description: prod[0].description,
@@ -147,7 +155,30 @@ function addProd(Evento) {
   }
 }
 
+function removerProd() {
+  prodlist.addEventListener("mousedown", (e) => {
+    e.preventDefault();
+    if (e.which == 3) {
+      let selecionadas = document.querySelectorAll("#pdv__list__table-body :checked")
+      let ids = [].map.call(selecionadas, (sel) => {
+        return parseInt(sel.id.replace("list-item", ""));
+      });
+      let updatedCart = cart.filter((item) => {
+        if (ids.indexOf(item.id) === -1) {
+          return item;
+        }
+      })
+      cart = updatedCart;
+      updateCart();
+      updateListProd(cart);
+      
+    }
+    
+  })
+}
+
 
 window.onload = atualizaRelogio();
 window.onload = autoComplete();
 window.onload = aplicaDesconto();
+window.onload = removerProd();

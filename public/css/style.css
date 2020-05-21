@@ -653,24 +653,37 @@ body {
       margin-top: 2rem;
       padding: 0; }
     .pdv__list__table {
-      font-size: 1.8rem; }
-      .pdv__list__table tr:nth-child(odd) {
-        background: rgba(238, 238, 238, 0.7); }
-      .pdv__list__table tr th:first-child,
-      .pdv__list__table tr td:first-child {
-        width: 10%;
-        text-align: center; }
-      .pdv__list__table tr th:nth-child(2),
-      .pdv__list__table tr td:nth-child(2) {
-        width: 60%; }
-      .pdv__list__table tr th:nth-child(3),
-      .pdv__list__table tr td:nth-child(3) {
-        width: 15%;
-        text-align: center; }
-      .pdv__list__table tr th:last-child,
-      .pdv__list__table tr td:last-child {
-        width: 15%;
-        text-align: center; }
+      font-size: 1.8rem;
+      width: 100%; }
+      .pdv__list__table-head {
+        background: rgba(238, 238, 238, 0.9); }
+      .pdv__list__table-body {
+        display: flex;
+        flex-direction: column; }
+      .pdv__list__table-body-item label, .pdv__list__table-head {
+        display: flex;
+        flex-direction: row;
+        width: 100%; }
+        .pdv__list__table-body-item label div:first-child, .pdv__list__table-head div:first-child {
+          width: 15%;
+          text-align: center; }
+        .pdv__list__table-body-item label div:nth-child(2), .pdv__list__table-head div:nth-child(2) {
+          width: 55%;
+          text-align: center; }
+        .pdv__list__table-body-item label div:nth-child(3), .pdv__list__table-head div:nth-child(3) {
+          width: 15%;
+          text-align: center; }
+        .pdv__list__table-body-item label div:last-child, .pdv__list__table-head div:last-child {
+          width: 15%;
+          text-align: center; }
+      .pdv__list__table-body-item div {
+        border: 1px solid rgba(238, 238, 238, 0.4); }
+      .pdv__list__table-body-item:nth-child(odd) {
+        background: rgba(238, 238, 238, 0.3); }
+      .pdv__list__table .list-item {
+        display: none; }
+      .pdv__list__table .list-item:checked ~ label {
+        background-color: rgba(255, 255, 0, 0.3); }
     .pdv__list__sell {
       width: 70%;
       margin: 0 auto;

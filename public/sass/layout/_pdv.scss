@@ -74,31 +74,63 @@
 
     &__table {
       font-size: 1.8rem;
+      width: 100%;
       
-      tr:nth-child(odd) {
-        background: rgba($color-gray-light-2, 0.7);
-      }
-      tr th:first-child,
-      tr td:first-child {
-        width: 10%;
-        text-align: center;
+      &-head {
+        background: rgba($color-gray-light-2, 0.9);
       }
 
-      tr th:nth-child(2),
-      tr td:nth-child(2) {
-        width: 60%;
+      &-body {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      &-body-item label,
+      &-head {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+
+        
+        
+        & div:first-child {
+          width: 15%;
+          text-align: center;
+        }
+  
+        & div:nth-child(2) {
+          width: 55%;
+          text-align: center;
+        }
+  
+        & div:nth-child(3) {
+          width: 15%;
+          text-align: center;
+        }
+  
+        & div:last-child {
+          width: 15%;
+          text-align: center;
+        }
       }
 
-      tr th:nth-child(3),
-      tr td:nth-child(3) {
-        width: 15%;
-        text-align: center;
+      &-body-item {
+        & div{
+          border: 1px solid rgba($color-gray-light-2, 0.4);
+        }
+        
+        &:nth-child(odd) {
+          background: rgba($color-gray-light-2, 0.3);
+        }
       }
 
-      tr th:last-child,
-      tr td:last-child {
-        width: 15%;
-        text-align: center;
+      
+      & .list-item {
+        display: none;
+      }
+
+      & .list-item:checked~label {
+        background-color: rgba(yellow, 0.3);
       }
     }
 
