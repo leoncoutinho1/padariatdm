@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "compile:sass": "node-sass public/sass/main.scss public/css/style.css -w -r",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "startAPI": "nodemon ./api/server.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
     "express": "^4.17.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
-    "sequelize": "^5.21.3"
+    "sequelize": "^5.21.11",
+    "sequelize-cli": "^5.5.1"
   }
 }

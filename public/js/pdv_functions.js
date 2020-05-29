@@ -1,10 +1,13 @@
 let cart = [];
+let vendedor = document.getElementById("pdv__list__header__vendedor");
 let input_qty = document.getElementById('pdv__list__form__qty');
 let input_prod = document.getElementById('pdv__list__form__prod');
 let dl_prods = document.getElementById("pdv__list__form__dl_prods");
 let prodlist = document.getElementById("pdv__list__table-body");
 let input_desconto = document.getElementById("pdv__list__sell__desconto");
 let input_total = document.getElementById("pdv__list__sell__total");
+let formVenda = document.getElementById("pdv__list__sell");
+
 
 input_desconto.value = 0.00;
 input_total.vallue = 0.00;
@@ -14,6 +17,15 @@ async function findProducts(prod) {
     .then((response) => {
       return response.json();
     })
+    .then((response) => {
+      return response;
+    })
+    .catch(err => console.log(err));
+}
+
+async function createVenda(venda) {
+  console.log(venda);
+  return await fetch('http://localhost:3000/createvenda', {method: 'POST', body: venda})
     .then((response) => {
       return response;
     })
@@ -171,10 +183,28 @@ function removerProd() {
       cart = updatedCart;
       updateCart();
       updateListProd(cart);
-      
     }
-    
   })
+}
+
+function gravaVenda() {
+  formVenda.addEventListener('submit', (event) => {
+    event.preventDefault();
+    alert('aqui');
+    let venda = {};
+    venda.vendedor = vendedor.innerHTML;
+    venda.desconto = parseInt(input_desconto.value);
+    venda.valorTotal = parseInt(input_total.value.replace('R$ ', ''));
+    createVenda(venda)
+      .then(response => console.log(response))
+      .catch(err => console.log(err));
+    
+    cart = [];
+    input_desconto.value = 0;
+    input_total.value = 0;
+    // updateListProd(cart);
+    // EnterTab('pdv__list__form__qty', '');
+  });
 }
 
 
@@ -182,3 +212,4 @@ window.onload = atualizaRelogio();
 window.onload = autoComplete();
 window.onload = aplicaDesconto();
 window.onload = removerProd();
+window.onload = gravaVenda();

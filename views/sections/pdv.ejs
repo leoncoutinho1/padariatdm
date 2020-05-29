@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <div class="pdv__list__sell">
+    <form method="POST" class="pdv__list__sell" id="pdv__list__sell">
       <div class="pdv__list__sell__form-group">
         <label for="pdv__list__sell__desconto" class="pdv__list__sell__desconto-label">Desconto:</label>
         <input type="number" name="pdv__list__sell__desconto" id="pdv__list__sell__desconto"
@@ -49,7 +49,10 @@
         <input readonly type="text" name="pdv__list__sell__total" id="pdv__list__sell__total"
           class="pdv__list__sell__total">
       </div>
-    </div>
+      <button class="pdv__list__sell__form-group btn">
+          <span>Finalizar venda</span>
+      </button>      
+    </form>
   </div>
 
 

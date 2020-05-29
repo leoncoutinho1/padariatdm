@@ -181,10 +181,12 @@ body {
 
 .btn, .btn:link, .btn:visited {
   text-transform: uppercase;
+  justify-content: center;
+  background-color: green;
+  font-weight: 700;
   text-decoration: none;
-  padding: 1.5rem 4rem;
-  display: inline-block;
-  border-radius: 10rem;
+  padding: 1.5rem;
+  border-radius: 3rem;
   transition: all .2s;
   position: relative;
   font-size: 1.6rem;
@@ -685,7 +687,7 @@ body {
       .pdv__list__table .list-item:checked ~ label {
         background-color: rgba(255, 255, 0, 0.3); }
     .pdv__list__sell {
-      width: 70%;
+      width: 85%;
       margin: 0 auto;
       padding: 1rem;
       background-color: rgba(119, 119, 119, 0.3);
@@ -696,12 +698,13 @@ body {
       .pdv__list__sell__form-group {
         display: flex;
         flex-direction: column;
-        width: 100%;
+        width: 28%;
         color: black; }
         .pdv__list__sell__form-group label {
           font-size: 2rem;
           font-weight: 700; }
         .pdv__list__sell__form-group input {
+          width: 100%;
           font-size: 5rem;
           text-transform: uppercase;
           border: 0;
@@ -711,10 +714,6 @@ body {
           padding-bottom: 1px; }
           .pdv__list__sell__form-group input:focus {
             border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
-      .pdv__list__sell__desconto {
-        width: 80%; }
-      .pdv__list__sell__total {
-        width: 90%; }
   .pdv__nota {
     font-size: 10pt; }
     .pdv__nota__table__header {
