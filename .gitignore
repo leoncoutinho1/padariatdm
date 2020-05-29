@@ -1,3 +1,4 @@
 node_modules/
-public/img/
-utils/stringConnection.js
+public/img
+public/sass
+api/utils/stringConnection.js
