@@ -15,9 +15,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const productRoutes = require('./routes/product');
-
+const cartItemRoutes = require('./routes/cartItem');
 
 app.use(productRoutes);
+app.use(cartItemRoutes);
 
 app.listen(3001, () => {
   console.log('Escutando em localhost:3001');
