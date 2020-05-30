@@ -62,7 +62,7 @@ exports.createProduct = (req, res, next) => {
     })
     .then((result) => {
       if(result[1]) {
-        res.status(200).send({ "msg": "Objeto criado com sucesso" });
+        res.status(201).send({ "msg": "Objeto criado com sucesso" });
       } else {
         res.status(200).send({ "msg": `Já existe o produto cadastrado com o nome: ${result[0].description}`});
       }
@@ -96,11 +96,11 @@ exports.deleteProduct = (req, res, next) => {
       if (prod != null) {
         prod.destroy()
         .then(result => {
-          res.status(200).send("Produto removido com sucesso");
+          res.status(200).send({ "msg": "Produto removido com sucesso" });
         })
         .catch(err => console.log(err));
       } else {
-        res.status(200).send("Não foi encontrado produto com esse código");
+        res.status(404).send({ "msg": "Não foi encontrado produto com esse código" });
       }
     })
     .catch(err => console.log(err));
