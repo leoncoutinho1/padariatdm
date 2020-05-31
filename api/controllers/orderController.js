@@ -14,20 +14,19 @@ exports.fetchAll = (req, res, next) => {
       });
   }
 
-exports.findByCode = (req, res, next) => {
-  console.log('passou aqui no code');
-  Order.findAll({ where: { code: req.params.code } })
-  .then((orders) => {
-    if (orders == null || orders.length == 0) {
-      res.status(204).send();
-    } else {
-      res.status(200).send(orders);
-    }
-  })
-  .catch((err) => {
-    res.status(404).send(err);
-  });
-}
+// exports.findByCode = (req, res, next) => {
+//   Order.findAll({ where: { code: req.params.code } })
+//   .then((orders) => {
+//     if (orders == null || orders.length == 0) {
+//       res.status(204).send();
+//     } else {
+//       res.status(200).send(orders);
+//     }
+//   })
+//   .catch((err) => {
+//     res.status(404).send(err);
+//   });
+// }
 
 exports.findByAttrib = (req, res, next) => {
   // utilizando a req.query que já vem no formato JSON
@@ -49,58 +48,46 @@ exports.findByAttrib = (req, res, next) => {
 }
 
 exports.createOrder = (req, res, next) => {
-  Order.findOrCreate({
-              where: { 
-                code: req.body.code 
-              }, 
-              defaults: {
-                description: req.body.description,
-                qty: req.body.qty,
-                cost: req.body.cost,
-                price: req.body.price
-              }
-    })
-    .then((result) => {
-      if(result[1]) {
-        res.status(201).send({ "msg": "Objeto criado com sucesso" });
-      } else {
-        res.status(200).send({ "msg": `Já existe o produto cadastrado com o nome: ${result[0].description}`});
-      }
-      
+  Order.create({ 
+    seller: req.body.seller,
+    discount: req.body.discount,
+    total: req.body.total
+  })
+    .then((order) => {
+      res.status(201).send(order.dataValues);
     })
     .catch(err => console.log(err));
 }
 
 exports.udpateOrder = (req, res, next) => {
-  Order.findOne({ where: { code: req.body.code }})
+  Order.findOne({ where: { id: req.body.id }})
     .then(order => {
-      order.description = req.body.description;
-      order.qty = req.body.qty;
-      order.cost = req.body.cost;
-      order.price = req.body.price;
+      order.seller = req.body.seller;
+      order.discount = req.body.discount;
+      order.total = req.body.total;
       order.save()
         .then(result => {
-          res.status(200).send({ "msg": "orderuto atualizado com sucesso"});
+          res.status(200).send({ "msg": "Venda atualizada com sucesso"});
         })
         .catch(err => console.log(err));
     })
     .catch(err => {
-      res.send({ "msg": `Produto código ${req.body.code} não encontrado` });
+      res.send({ "msg": `Venda ${req.body.id} não encontrada` });
       console.log(err);
     });
 }
 
 exports.deleteOrder = (req, res, next) => {
-  Order.findOne({ where: { code: req.body.code }})
+  Order.findOne({ where: { id: req.body.id }})
     .then(order => {
       if (order != null) {
         order.destroy()
         .then(result => {
-          res.status(200).send({ "msg": "Produto removido com sucesso" });
+          res.status(200).send({ "msg": "Venda excluída com sucesso" });
         })
         .catch(err => console.log(err));
       } else {
-        res.status(404).send({ "msg": "Não foi encontrado produto com esse código" });
+        res.status(404).send({ "msg": "Não foi encontrada venda com esse código" });
       }
     })
     .catch(err => console.log(err));
