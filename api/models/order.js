@@ -5,8 +5,12 @@ class Order extends Model {}
 
 Order.init({
   seller: {
-    type: DataTypes.STRING,
-    allowNull: false
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: 'users',
+      key: id
+    }
   },
   discount: {
     type: DataTypes.DOUBLE,
