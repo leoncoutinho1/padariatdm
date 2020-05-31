@@ -52,7 +52,11 @@ exports.createCartItem = (req, res, next) => {
       }
       
     })
-    .catch(err => console.log(err));
+    .catch((err) => {
+      if (err.parent.errno = 1452) {
+        res.status(404).send({ "msg": "CartItem não criado pois a venda ou o produto não existe"});
+      }
+    });
 }
 
 exports.udpateCartItem = (req, res, next) => {
