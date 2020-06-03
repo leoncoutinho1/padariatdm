@@ -17,10 +17,12 @@ app.use(bodyParser.json());
 const productRoutes = require('./routes/product');
 const cartItemRoutes = require('./routes/cartItem');
 const orderRoutes = require('./routes/order');
+const userRoutes = require('./routes/user');
 
 app.use(productRoutes);
 app.use(cartItemRoutes);
 app.use(orderRoutes);
+app.use(userRoutes);
 
 app.listen(3001, () => {
   console.log('Escutando em localhost:3001');

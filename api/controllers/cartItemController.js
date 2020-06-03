@@ -1,7 +1,7 @@
-const cartItem = require('../models/cartItem');
+const CartItem = require('../models/cartItem');
 
 exports.fetchAll = (req, res, next) => {
-    cartItem.findAll()
+    CartItem.findAll()
       .then((item) => {
         if (item == null || item.length == 0) {
           res.status(204).send();
@@ -20,7 +20,7 @@ exports.findByAttrib = (req, res, next) => {
   if (JSON.stringify(req.query) === "{}") {
     next();
   } else {
-    cartItem.findAll({ where: req.query })
+    CartItem.findAll({ where: req.query })
       .then((prods) => {
         if (prods == null || prods.length == 0) {
           res.status(204).send();
@@ -35,7 +35,7 @@ exports.findByAttrib = (req, res, next) => {
 }
 
 exports.createCartItem = (req, res, next) => {
-  cartItem.findOrCreate({
+  CartItem.findOrCreate({
               where: {
                 order: req.body.order, 
                 product: req.body.product, 
@@ -60,23 +60,25 @@ exports.createCartItem = (req, res, next) => {
 }
 
 exports.udpateCartItem = (req, res, next) => {
-  cartItem.findOne({ where: { order: req.body.order, product: req.body.product }})
+  CartItem.findOne({ where: { order: req.body.order, product: req.body.product }})
     .then(item => {
       item.qty = req.body.qty;
-      item.save()
-        .then(result => {
-          res.status(200).send({ "msg": "CartItem atualizado com sucesso"});
-        })
-        .catch(err => console.log(err));
+      return item.save();
+    })
+    .then(result => {
+      res.status(200).send({ "msg": "CartItem atualizado com sucesso"});
     })
     .catch(err => {
-      res.send({ "msg": `CartItem não encontrado` });
-      console.log(err);
+      if (err.parent.errno = 1452) {
+        res.status(404).send({ "msg": "CartItem não atualizado pois a venda ou o produto não existe"});
+      } else {
+        res.status(404).send({ "msg": "Não foi possível atualizar o cartItem"});
+      }
     });
 }
 
 exports.deleteCartItem = (req, res, next) => {
-  cartItem.findOne({ where: { order: req.body.order, product: req.body.product }})
+  CartItem.findOne({ where: { order: req.body.order, product: req.body.product }})
     .then(cartItem => {
       if (cartItem != null) {
         cartItem.destroy()

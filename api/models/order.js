@@ -9,7 +9,7 @@ Order.init({
     allowNull: false,
     references: {
       model: 'users',
-      key: id
+      key: 'id'
     }
   },
   discount: {

@@ -56,7 +56,11 @@ exports.createOrder = (req, res, next) => {
     .then((order) => {
       res.status(201).send(order.dataValues);
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      if (err.parent.errno = 1452) {
+        res.status(404).send({ "msg": "Venda não criada pois o vendedor informado não existe"});
+      }
+    });
 }
 
 exports.udpateOrder = (req, res, next) => {
@@ -65,15 +69,17 @@ exports.udpateOrder = (req, res, next) => {
       order.seller = req.body.seller;
       order.discount = req.body.discount;
       order.total = req.body.total;
-      order.save()
-        .then(result => {
-          res.status(200).send({ "msg": "Venda atualizada com sucesso"});
-        })
-        .catch(err => console.log(err));
+      return order.save();
+    })
+    .then(result => {
+      res.status(200).send({ "msg": "Venda atualizada com sucesso"});
     })
     .catch(err => {
-      res.send({ "msg": `Venda ${req.body.id} não encontrada` });
-      console.log(err);
+      if (err.parent.errno = 1452) {
+        res.status(404).send({ "msg": "Venda não atualizada pois o vendedor informado não existe"});
+      } else {
+        res.status(404).send({ "msg": "Não foi possível atualizar a venda"});
+      }
     });
 }
 
