@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const sequelize = require('../utils/database');
 const { DataTypes, Model} = require('sequelize');
 
 
@@ -9,6 +9,9 @@ User.init({
     type: DataTypes.STRING,
     allowNull: false
   }
+}, {
+  sequelize,
+  modelName: 'user'
 });
 
 module.exports = User;
